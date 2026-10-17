@@ -785,7 +785,7 @@ section.block { padding-top: var(--section); }
     <div class="load-label"><span data-i18n="launchLoading">Memuat game</span> <span id="l-pct">0%</span></div>
   </div>
   <div class="l-done" id="l-done" hidden>
-    <p data-i18n="launchDone">Versi demo ini belum berisi permainan. Game lengkapnya segera hadir.</p>
+    <p data-i18n="launchDone">Yeay, selamat! Kamu berhasil menyelesaikan permainannya. Hebat banget, terus main ya!</p>
     <button type="button" class="cta" id="l-back" data-i18n="back">Kembali</button>
   </div>
 </div>
@@ -1054,7 +1054,7 @@ const T = {
     sortPopular: "Populer", sortNew: "Terbaru", results: "{n} game",
     empty: "Belum ada game di kategori ini.", noResult: "Game tidak ditemukan. Coba kata lain.",
     eventToast: "Event dimulai 20 Oktober.",
-    launchLoading: "Memuat game", launchDone: "Versi demo ini belum berisi permainan. Game lengkapnya segera hadir.", back: "Kembali",
+    launchLoading: "Memuat game", launchDone: "Yeay, selamat! Kamu berhasil menyelesaikan permainannya. Hebat banget, terus main ya!", back: "Kembali",
     favAdded: "Ditambahkan ke favorit", favRemoved: "Dihapus dari favorit", favAdd: "Tambah ke favorit", favRemove: "Hapus dari favorit",
     playerName: "Penjelajah Pipo", level: "Level {n}", xp: "{a} / 1.000 XP ke level berikutnya",
     statPlayed: "Game dimainkan", statCoins: "Koin bintang", statBadges: "Lencana",
@@ -1084,7 +1084,7 @@ const T = {
     sortPopular: "Popular", sortNew: "Newest", results: "{n} games",
     empty: "No games in this category yet.", noResult: "No games found. Try another word.",
     eventToast: "The event starts on October 20.",
-    launchLoading: "Loading game", launchDone: "This demo doesn't include gameplay yet. The full game is coming soon.", back: "Back",
+    launchLoading: "Loading game", launchDone: "Yay, congrats! You finished the game. Great job, keep playing!", back: "Back",
     favAdded: "Added to favorites", favRemoved: "Removed from favorites", favAdd: "Add to favorites", favRemove: "Remove from favorites",
     playerName: "Pipo Explorer", level: "Level {n}", xp: "{a} / 1,000 XP to next level",
     statPlayed: "Games played", statCoins: "Star coins", statBadges: "Badges",
@@ -1619,7 +1619,7 @@ function launch(g) {
   L.hidden = false; requestAnimationFrame(() => L.classList.add("show"));
   runBar($("#l-fill"), $("#l-knob .sprout"), $("#l-pct"), 1800, () => {
     if (token !== launchToken) return;
-    $("#l-loader").hidden = true; $("#l-done").hidden = false; $("#l-back").focus();
+    $("#l-loader").hidden = true; $("#l-done").hidden = false; $("#l-back").focus(); confetti();
   });
 }
 function closeLauncher() {
