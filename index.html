@@ -321,7 +321,7 @@ section.block { padding-top: var(--section); }
 }
 .rank.gold { background: var(--sun); color: var(--wood-dark); }
 
-/* event ticket: art stub + perforation + body with countdown and coin progress */
+/* event ticket: art stub + perforation + body with countdown */
 .ticket {
   position: relative; display: grid; grid-template-columns: 36% minmax(0, 1fr); width: 100%;
   background: #fff; border-radius: 24px;
@@ -342,10 +342,6 @@ section.block { padding-top: var(--section); }
 .cd span { flex: 1; min-width: 0; background: var(--meadow); border-radius: 12px; padding: 6px 2px 5px; text-align: center; box-shadow: inset 0 0 0 1px var(--line); }
 .cd b { display: block; font-size: 16px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.1; }
 .cd small { display: block; font-size: 9.5px; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .06em; }
-.t-prog { display: grid; gap: 5px; }
-.t-prog small { font-size: 11px; color: var(--ink-soft); font-weight: 700; font-variant-numeric: tabular-nums; }
-.t-prog .bar.slim { height: 20px; padding: 3px; }
-.t-prog .bar.slim .sprout { width: 20px; height: 20px; }
 .t-cta {
   height: 38px; border-radius: 99px; font-size: 13px; font-weight: 800; color: #fff;
   background: linear-gradient(180deg, #8fd05a, var(--leaf)); box-shadow: 0 3px 0 var(--leaf-deep);
@@ -462,7 +458,7 @@ section.block { padding-top: var(--section); }
 .p-level span { display: inline-block; font-size: 12px; font-weight: 800; color: var(--leaf-deep); background: var(--leaf-soft); padding: 5px 12px; border-radius: 99px; }
 .xp { margin-top: 22px; display: grid; gap: 8px; }
 .xp small { text-align: center; font-size: 12px; color: var(--ink-soft); font-weight: 600; font-variant-numeric: tabular-nums; }
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
 .stat { background: #fff; border-radius: 18px; padding: 16px 10px; text-align: center; box-shadow: 0 0 0 1px var(--line); }
 .stat b { display: block; font-size: 19px; font-weight: 800; font-variant-numeric: tabular-nums; }
 .stat small { display: block; font-size: 11px; color: var(--ink-soft); font-weight: 600; margin-top: 2px; line-height: 1.3; }
@@ -487,58 +483,8 @@ section.block { padding-top: var(--section); }
 
 /* ───────── gamification ───────── */
 .tr { display: flex; align-items: center; gap: 8px; }
-.coinpill {
-  display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px 0 5px; border-radius: 99px;
-  background: rgb(255 255 255 / .28); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .45); color: #fff; font-weight: 800; font-size: 13px; font-variant-numeric: tabular-nums;
-}
-.coinpill .coin { width: 24px; height: 24px; filter: drop-shadow(0 2px 0 rgb(0 0 0 / .15)); }
-.coinpill.bump { animation: bump .45s cubic-bezier(.3,1.6,.5,1); }
-.coinpill.bump .coin { animation: coinSpin .6s ease; }
-@keyframes bump { 40% { transform: scale(1.18); } }
-@keyframes coinSpin { to { transform: rotateY(360deg); } }
-.flycoin { position: fixed; z-index: 160; left: 0; top: 0; width: 24px; height: 24px; pointer-events: none; }
-.flycoin svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 3px 4px rgb(0 0 0 / .25)); }
-.floattext {
-  position: fixed; z-index: 161; pointer-events: none; font-weight: 800; font-size: 20px; color: var(--sun);
-  -webkit-text-stroke: 1px var(--wood-dark); paint-order: stroke fill; text-shadow: 0 3px 0 var(--wood-dark);
-}
-
-/* daily check-in: wooden board with seven reward tokens */
-.daily {
-  border-radius: 26px; padding: 16px 14px 14px;
-  background: linear-gradient(180deg, #fff6e6, #fdeccf);
-  box-shadow: 0 0 0 2px var(--wood-light), 0 6px 0 0 #e9c48e, 0 18px 26px -18px rgb(var(--shadow) / .6);
-}
-.daily .head { padding-inline: 4px; margin-bottom: 12px; }
-.streak { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 10px; border-radius: 99px; background: var(--wood); color: #fff; font-size: 11.5px; font-weight: 800; box-shadow: 0 2px 0 var(--wood-dark); white-space: nowrap; }
-.days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
-.day {
-  position: relative; display: grid; justify-items: center; gap: 2px; padding: 7px 0 6px; border-radius: 14px;
-  background: #fff; box-shadow: inset 0 0 0 1.5px var(--line), 0 3px 0 var(--line);
-  font-variant-numeric: tabular-nums; transition: transform .15s;
-}
-.day .dn { font-size: 9.5px; font-weight: 800; color: var(--ink-soft); letter-spacing: .04em; }
-.day svg { width: 24px; height: 24px; }
-.day .amt { font-size: 10.5px; font-weight: 800; color: var(--wood-dark); }
-.day.done { background: var(--leaf-soft); box-shadow: inset 0 0 0 1.5px #bfe0a0, 0 3px 0 #bfe0a0; }
-.day.done svg { opacity: .45; }
-.day.done::after {
-  content: ""; position: absolute; right: -3px; top: -4px; width: 17px; height: 17px; border-radius: 50%;
-  background: var(--leaf) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 11px no-repeat;
-  box-shadow: 0 0 0 2px #fff;
-}
-.day.today { background: linear-gradient(180deg, #fff3c4, var(--sun)); box-shadow: inset 0 0 0 1.5px #e7b53a, 0 3px 0 #c9931a; animation: glow 1.6s ease-in-out infinite; }
-.day.today .dn { color: var(--wood-dark); }
-.day.today svg { animation: wiggle 1.6s ease-in-out infinite; }
-.day.later { opacity: .72; }
-.day.claiming { animation: flip .6s cubic-bezier(.3,1.3,.5,1); }
-@keyframes glow { 50% { box-shadow: inset 0 0 0 1.5px #e7b53a, 0 3px 0 #c9931a, 0 0 0 5px rgb(255 201 60 / .35); } }
-@keyframes wiggle { 0%, 60%, 100% { transform: rotate(0); } 70% { transform: rotate(-12deg) scale(1.1); } 80% { transform: rotate(10deg) scale(1.1); } 90% { transform: rotate(-6deg); } }
-@keyframes flip { 50% { transform: rotateY(180deg) scale(1.15); } }
-
 /* tactile press + shine sweep on primary actions */
-.cat:active .disc, .day:active, .t-cta:active, .f-play:active, .chips button:active, .seg button:active, .more:active,
+.cat:active .disc, .t-cta:active, .f-play:active, .chips button:active, .seg button:active, .more:active,
 .gcard:active, .feature:active, .lrow:active, .mini button:active, .tabbar button:active { transform: scale(.95); }
 .cat .disc, .t-cta, .f-play, .chips button, .seg button, .more, .lrow, .mini button { transition: transform .15s, background .2s, color .2s, box-shadow .2s; }
 .shine { position: relative; overflow: hidden; }
@@ -623,8 +569,6 @@ section.block { padding-top: var(--section); }
   animation-delay: calc(var(--i, 0) * 60ms), calc(var(--i, 0) * -.7s); animation-iteration-count: 1, infinite; animation-fill-mode: both, none; }
 .dcard.on { animation: idle 2.6s ease-in-out infinite; }
 .tb-ico svg { animation: idleSm 2.4s ease-in-out infinite; }
-.coinpill .coin { animation: coinIdle 4s ease-in-out infinite; }
-@keyframes coinIdle { 0%, 80%, 100% { transform: rotateY(0); } 90% { transform: rotateY(180deg); } }
 
 /* 3D tilt that follows the pointer, with a moving glare */
 .tilt { transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--ts, 1)); transition: transform .35s cubic-bezier(.2,.8,.2,1); }
@@ -644,12 +588,6 @@ section.block { padding-top: var(--section); }
 .sparkles svg { width: 100%; height: 100%; display: block; }
 .stage .sparkles i { color: var(--sun); }
 @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.3) rotate(0); } 40% { opacity: 1; transform: scale(1) rotate(45deg); } 70% { opacity: .2; transform: scale(.6) rotate(90deg); } }
-
-/* coins bobbing over the event art */
-.t-art { position: relative; }
-.t-coins i { position: absolute; width: 26px; height: 26px; animation: coinBob 2.8s ease-in-out var(--d) infinite; filter: drop-shadow(0 4px 4px rgb(0 0 0 / .25)); }
-.t-coins svg { width: 100%; height: 100%; display: block; }
-@keyframes coinBob { 0%, 100% { transform: translateY(0) rotateY(0); } 50% { transform: translateY(-10px) rotateY(180deg); } }
 
 /* scroll reveal: sections below the fold slide up as they enter */
 .reveal-pre { opacity: 0; transform: translateY(28px) scale(.98); }
@@ -804,7 +742,6 @@ section.block { padding-top: var(--section); }
       <div class="topbar pad">
         <span class="wordmark wm" aria-label="Pipomori"></span>
         <div class="tr">
-          <span class="coinpill" role="status"><svg class="coin" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#ffc93c" stroke="#c9931a" stroke-width="2"/><path d="m12 6.8 1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z" fill="#fff3c4"/></svg><b class="coin-n">0</b></span>
           <div class="lang" role="group" aria-label="Bahasa / Language">
             <button type="button" data-lang="id" aria-pressed="true">ID</button>
             <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -820,15 +757,6 @@ section.block { padding-top: var(--section); }
     <main class="sheet pad">
       <div class="cats" id="cats" role="group" aria-label="Kategori"></div>
 
-      <section class="block">
-        <div class="daily">
-          <div class="head">
-            <span class="ttl"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22v-8" stroke="#3d7a22" stroke-width="2.6" stroke-linecap="round"/><path d="M12 14C12 8 8 5 3 6c0 5 4 8 9 8Z" fill="#6cb33c"/><path d="M12 13c0-5 3.5-8 9-7 0 5-3.5 7-9 7Z" fill="#8fd05a"/></svg><h2 data-i18n="daily">Hadiah Harian</h2></span>
-            <span class="streak" id="streak"></span>
-          </div>
-          <div class="days" id="days"></div>
-        </div>
-      </section>
 
       <section class="block">
         <div class="stage">
@@ -844,19 +772,15 @@ section.block { padding-top: var(--section); }
       <section class="block">
         <div class="head"><span class="ttl"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22v-8" stroke="#3d7a22" stroke-width="2.6" stroke-linecap="round"/><path d="M12 14C12 8 8 5 3 6c0 5 4 8 9 8Z" fill="#6cb33c"/><path d="M12 13c0-5 3.5-8 9-7 0 5-3.5 7-9 7Z" fill="#8fd05a"/></svg><h2 data-i18n="event">Event Minggu Ini</h2></span></div>
         <div class="ticket">
-          <div class="t-art" role="img" aria-label="Kiko"><span class="t-coins" aria-hidden="true"><i style="left:12%;top:14%;--d:0s"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ffc93c" stroke="#c9931a" stroke-width="2"/><path d="m12 6.8 1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z" fill="#fff3c4"/></svg></i><i style="left:62%;top:8%;--d:.9s;width:20px;height:20px"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ffc93c" stroke="#c9931a" stroke-width="2"/><path d="m12 6.8 1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z" fill="#fff3c4"/></svg></i><i style="left:40%;top:66%;--d:1.7s;width:22px;height:22px"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ffc93c" stroke="#c9931a" stroke-width="2"/><path d="m12 6.8 1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z" fill="#fff3c4"/></svg></i></span></div>
+          <div class="t-art" role="img" aria-label="Kiko"></div>
           <div class="t-body">
             <span class="tag" data-i18n="eventTag">20–26 Okt</span>
-            <h3 data-i18n="eventTitle">Festival Koin Kiko</h3>
+            <h3 data-i18n="eventTitle">Festival Kiko</h3>
             <span class="cd-label" id="cd-label"></span>
             <div class="cd" id="cd">
               <span><b id="cd-d">0</b><small data-i18n="days">Hari</small></span>
               <span><b id="cd-h">0</b><small data-i18n="hours">Jam</small></span>
               <span><b id="cd-m">0</b><small data-i18n="mins">Menit</small></span>
-            </div>
-            <div class="t-prog">
-              <small id="coin-label"></small>
-              <div class="bar slim" aria-hidden="true"><div class="track"><div class="fill" id="coin-fill"></div><span id="coin-knob"></span></div></div>
             </div>
             <button type="button" class="t-cta shine" id="event-btn" aria-pressed="false" data-i18n="joinEvent">Ikut Event</button>
           </div>
@@ -880,7 +804,6 @@ section.block { padding-top: var(--section); }
       <div class="topbar pad">
         <span class="wordmark wm" aria-label="Pipomori"></span>
         <div class="tr">
-          <span class="coinpill" role="status"><svg class="coin" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#ffc93c" stroke="#c9931a" stroke-width="2"/><path d="m12 6.8 1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z" fill="#fff3c4"/></svg><b class="coin-n">0</b></span>
           <div class="lang" role="group" aria-label="Bahasa / Language">
             <button type="button" data-lang="id" aria-pressed="true">ID</button>
             <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -916,7 +839,6 @@ section.block { padding-top: var(--section); }
       <div class="topbar pad">
         <span class="wordmark wm" aria-label="Pipomori"></span>
         <div class="tr">
-          <span class="coinpill" role="status"><svg class="coin" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#ffc93c" stroke="#c9931a" stroke-width="2"/><path d="m12 6.8 1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z" fill="#fff3c4"/></svg><b class="coin-n">0</b></span>
           <div class="lang" role="group" aria-label="Bahasa / Language">
             <button type="button" data-lang="id" aria-pressed="true">ID</button>
             <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -937,7 +859,6 @@ section.block { padding-top: var(--section); }
       </div>
       <div class="stats">
         <div class="stat"><b id="st-played">0</b><small data-i18n="statPlayed">Game dimainkan</small></div>
-        <div class="stat"><b id="st-coins">0</b><small data-i18n="statCoins">Koin bintang</small></div>
         <div class="stat"><b id="st-badges">0</b><small data-i18n="statBadges">Lencana</small></div>
       </div>
 
@@ -1041,13 +962,13 @@ const T = {
     loading: "Memuat", greetMorning: "Selamat pagi, {n}", greetDay: "Selamat siang, {n}",
     greetEvening: "Selamat malam, {n}", greetSub: "Hutan Pipomori sudah menunggumu hari ini.",
     trending: "Lagi Ramai Dimainkan", event: "Event Minggu Ini", eventTag: "20–26 Okt",
-    eventTitle: "Festival Koin Kiko", eventSub: "Kumpulkan 500 koin bintang, buka topi daun emas.",
-    explorer: "Penjelajah", daily: "Hadiah Harian", dayN: "H{n}", streak: "Hari ke-{n}", claimed: "+{n} koin masuk!", dailyDone: "Hadiah hari ini sudah diambil. Kembali besok ya.", dailyLater: "Hadiah ini bisa diambil nanti.",
-    rewardPlay: "+25 koin dari bermain", levelUp: "Naik Level!", levelUpSub: "Kamu sekarang Level {n}. Satu lencana baru terbuka.", nice: "Mantap!",
-    logout: "Keluar", logoutQ: "Keluar dari akun?", logoutText: "Favorit, koin, dan riwayat mainmu tetap tersimpan di perangkat ini.", cancel: "Batal", loggedOut: "Kamu sudah keluar",
+    eventTitle: "Festival Kiko",
+    explorer: "Penjelajah",
+    levelUp: "Naik Level!", levelUpSub: "Kamu sekarang Level {n}. Satu lencana baru terbuka.", nice: "Mantap!",
+    logout: "Keluar", logoutQ: "Keluar dari akun?", logoutText: "Favorit dan riwayat mainmu tetap tersimpan di perangkat ini.", cancel: "Batal", loggedOut: "Kamu sudah keluar",
     loginTitle: "Masuk ke Pipomori", loginSub: "Pilih karakter dan tulis nama penjelajahmu.", nameLabel: "Nama penjelajah", namePh: "Contoh: Pandu",
     login: "Masuk", guest: "Main sebagai tamu", guestName: "Tamu", hello: "Halo, {n}!", nameMissing: "Tulis namamu dulu, atau main sebagai tamu.",
-    play: "Main", startsIn: "Mulai dalam", endsIn: "Berakhir dalam", ended: "Event ini sudah selesai.", days: "Hari", hours: "Jam", mins: "Menit", coinsProgress: "{a} / 500 koin bintang", joinEvent: "Ikut Event", joinedEvent: "Sudah ikut", eventJoined: "Kamu ikut Festival Koin Kiko", eventLeft: "Kamu batal ikut event", online: "online",
+    play: "Main", startsIn: "Mulai dalam", endsIn: "Berakhir dalam", ended: "Event ini sudah selesai.", days: "Hari", hours: "Jam", mins: "Menit", joinEvent: "Ikut Event", joinedEvent: "Sudah ikut", eventJoined: "Kamu ikut Festival Kiko", eventLeft: "Kamu batal ikut event", online: "online",
     recommended: "Rekomendasi", seeAll: "Lihat semua", games: "game", playing: "sedang main", isNew: "Baru", hot: "Populer",
     playNow: "Main Sekarang", navHome: "Beranda", navGames: "Game", navProfile: "Profil",
     gamesTitle: "Semua Game", gamesSub: "{n} game siap dimainkan", searchPh: "Cari nama game",
@@ -1057,7 +978,7 @@ const T = {
     launchLoading: "Memuat game", launchDone: "Yeay, selamat! Kamu berhasil menyelesaikan permainannya. Hebat banget, terus main ya!", back: "Kembali",
     favAdded: "Ditambahkan ke favorit", favRemoved: "Dihapus dari favorit", favAdd: "Tambah ke favorit", favRemove: "Hapus dari favorit",
     playerName: "Penjelajah Pipo", level: "Level {n}", xp: "{a} / 1.000 XP ke level berikutnya",
-    statPlayed: "Game dimainkan", statCoins: "Koin bintang", statBadges: "Lencana",
+    statPlayed: "Game dimainkan", statBadges: "Lencana",
     favs: "Game Favorit", favEmpty: "Belum ada favorit. Tekan ikon hati di halaman game.",
     recent: "Terakhir Dimainkan", recentEmpty: "Belum ada game yang dimainkan. Coba satu dari halaman Game.",
     settings: "Pengaturan", setLang: "Bahasa", setSound: "Suara & musik", setNotif: "Notifikasi event",
@@ -1071,13 +992,13 @@ const T = {
     loading: "Loading", greetMorning: "Good morning, {n}", greetDay: "Good afternoon, {n}",
     greetEvening: "Good evening, {n}", greetSub: "The Pipomori forest is waiting for you today.",
     trending: "Trending Now", event: "This Week's Event", eventTag: "Oct 20–26",
-    eventTitle: "Kiko's Coin Festival", eventSub: "Collect 500 star coins to unlock the golden leaf hat.",
-    explorer: "Explorer", daily: "Daily Rewards", dayN: "D{n}", streak: "Day {n}", claimed: "+{n} coins added!", dailyDone: "Today's reward is claimed. Come back tomorrow.", dailyLater: "This reward unlocks on a later day.",
-    rewardPlay: "+25 coins for playing", levelUp: "Level Up!", levelUpSub: "You're now Level {n}. A new badge is unlocked.", nice: "Awesome!",
-    logout: "Log out", logoutQ: "Log out?", logoutText: "Your favorites, coins and play history stay saved on this device.", cancel: "Cancel", loggedOut: "You've logged out",
+    eventTitle: "Kiko's Festival",
+    explorer: "Explorer",
+    levelUp: "Level Up!", levelUpSub: "You're now Level {n}. A new badge is unlocked.", nice: "Awesome!",
+    logout: "Log out", logoutQ: "Log out?", logoutText: "Your favorites and play history stay saved on this device.", cancel: "Cancel", loggedOut: "You've logged out",
     loginTitle: "Sign in to Pipomori", loginSub: "Pick a character and enter your explorer name.", nameLabel: "Explorer name", namePh: "e.g. Pandu",
     login: "Sign in", guest: "Play as guest", guestName: "Guest", hello: "Hi, {n}!", nameMissing: "Enter your name first, or play as guest.",
-    play: "Play", startsIn: "Starts in", endsIn: "Ends in", ended: "This event has ended.", days: "Days", hours: "Hrs", mins: "Min", coinsProgress: "{a} / 500 star coins", joinEvent: "Join Event", joinedEvent: "Joined", eventJoined: "You joined Kiko's Coin Festival", eventLeft: "You left the event", online: "online",
+    play: "Play", startsIn: "Starts in", endsIn: "Ends in", ended: "This event has ended.", days: "Days", hours: "Hrs", mins: "Min", joinEvent: "Join Event", joinedEvent: "Joined", eventJoined: "You joined Kiko's Festival", eventLeft: "You left the event", online: "online",
     recommended: "Recommended", seeAll: "See all", games: "games", playing: "playing", isNew: "New", hot: "Popular",
     playNow: "Play Now", navHome: "Home", navGames: "Games", navProfile: "Profile",
     gamesTitle: "All Games", gamesSub: "{n} games ready to play", searchPh: "Search games",
@@ -1087,7 +1008,7 @@ const T = {
     launchLoading: "Loading game", launchDone: "Yay, congrats! You finished the game. Great job, keep playing!", back: "Back",
     favAdded: "Added to favorites", favRemoved: "Removed from favorites", favAdd: "Add to favorites", favRemove: "Remove from favorites",
     playerName: "Pipo Explorer", level: "Level {n}", xp: "{a} / 1,000 XP to next level",
-    statPlayed: "Games played", statCoins: "Star coins", statBadges: "Badges",
+    statPlayed: "Games played", statBadges: "Badges",
     favs: "Favorite Games", favEmpty: "No favorites yet. Tap the heart on a game page.",
     recent: "Recently Played", recentEmpty: "You haven't played anything yet. Pick one from Games.",
     settings: "Settings", setLang: "Language", setSound: "Sound & music", setNotif: "Event notifications",
@@ -1153,7 +1074,6 @@ const WORDMARK = `PIP<span class="o">O<svg viewBox="0 0 24 24" aria-hidden="true
 const store = { lang: "id", favs: [], recent: [], plays: 0, sound: true, notif: true, avatar: 0 };
 try { Object.assign(store, JSON.parse(localStorage.getItem("pipomori") || "{}")); } catch (e) {}
 if (!T[store.lang]) store.lang = "id";
-if (typeof store.coins !== "number") store.coins = 2450 + store.plays * 25;
 const save = () => { try { localStorage.setItem("pipomori", JSON.stringify(store)); } catch (e) {} };
 let homeCat = "all", gamesCat = "all", sort = "popular", query = "", view = "home", current = null;
 
@@ -1170,7 +1090,6 @@ const badge = g => g.tag ? `<span class="badge ${g.tag}">${g.tag === "new" ? t("
 function renderHome() {
   const h = new Date().getHours();
   $("#greet-title").textContent = t(h < 11 ? "greetMorning" : h < 18 ? "greetDay" : "greetEvening", { n: playerName() });
-  renderDaily(); setCoins(store.coins);
   $("#cats").innerHTML = CATS.map((c, i) => `
     <button type="button" class="cat" style="--i:${i}" data-homecat="${c.id}" aria-pressed="${c.id === homeCat}">
       <span class="disc" style="background-image:url('${c.img}')"></span>
@@ -1214,10 +1133,6 @@ function renderEvent() {
     $("#cd-h").textContent = Math.floor(mins / 60) % 24;
     $("#cd-m").textContent = mins % 60;
   }
-  const coins = Math.min(500, 320 + store.plays * 25);
-  $("#coin-label").textContent = t("coinsProgress", { a: nf().format(coins) });
-  const pct = coins / 5;
-  requestAnimationFrame(() => { $("#coin-fill").style.width = pct + "%"; $("#coin-knob .sprout").style.left = pct + "%"; });
   const joined = !!store.joined;
   $("#event-btn").setAttribute("aria-pressed", joined);
   $("#event-btn").textContent = t(joined ? "joinedEvent" : "joinEvent");
@@ -1262,7 +1177,6 @@ function renderProfile() {
   const pct = Math.max(4, xp / 10);
   requestAnimationFrame(() => { $("#xp-fill").style.width = pct + "%"; $("#xp-knob .sprout").style.left = pct + "%"; });
   $("#st-played").textContent = nf().format(24 + store.plays);
-  $("#st-coins").textContent = nf().format(store.coins);
   $(".p-name").textContent = playerName();
   $("#st-badges").textContent = nf().format(6 + Math.floor(store.plays / 3));
   const mini = (ids, emptyKey) => ids.length ? ids.map(byId).filter(Boolean).map(g => `
@@ -1275,61 +1189,10 @@ function renderProfile() {
 }
 
 /* ── gamification helpers ── */
-const COIN_SVG = `<svg class="coin" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#ffc93c" stroke="#c9931a" stroke-width="2"/><path d="m12 6.8 1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z" fill="#fff3c4"/></svg>`;
-const CHEST_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="10" width="18" height="10" rx="2" fill="#d39a5c" stroke="#7a4a22" stroke-width="1.6"/><path d="M3 10a9 5 0 0 1 18 0z" fill="#e2ab6b" stroke="#7a4a22" stroke-width="1.6"/><path d="M3 13h18" stroke="#7a4a22" stroke-width="1.2"/><rect x="10.5" y="11" width="3" height="4" rx="1" fill="#ffc93c" stroke="#7a4a22" stroke-width="1.2"/></svg>`;
-const DAILY = [10, 20, 30, 50, 80, 120, 200];
 const levelOf = plays => 7 + Math.floor((640 + plays * 40) / 1000);
 const playerName = () => store.name || t("explorer");
-const dkey = off => { const d = new Date(); d.setDate(d.getDate() + off); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
 const calm = () => reduceMotion.matches;
 
-let shownCoins = null;
-function setCoins(to, animate) {
-  const els = $$(".coin-n");
-  if (!animate || calm() || shownCoins === null) { shownCoins = to; els.forEach(e => e.textContent = nf().format(to)); return; }
-  const from = shownCoins, t0 = performance.now();
-  shownCoins = to;
-  const step = now => {
-    const k = Math.min(1, (now - t0) / 700), v = Math.round(from + (to - from) * (1 - Math.pow(1 - k, 3)));
-    els.forEach(e => e.textContent = nf().format(v));
-    if (k < 1) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-}
-function coinTarget() {
-  return $(`#view-${view} .coinpill`) || $(".coinpill");
-}
-function bumpPill() {
-  $$(".coinpill").forEach(p => { p.classList.remove("bump"); void p.offsetWidth; p.classList.add("bump"); });
-}
-// coins arc from a source rect into the visible coin counter, then the counter counts up
-function flyCoins(from, amount) {
-  const to = coinTarget().getBoundingClientRect();
-  const sx = from.left + from.width / 2 - 12, sy = from.top + from.height / 2 - 12;
-  const tx = to.left + 6, ty = to.top + 5;
-  floatText(`+${amount}`, from);
-  if (calm()) { setCoins(store.coins); bumpPill(); return; }
-  const n = Math.min(9, 4 + Math.round(amount / 40));
-  for (let i = 0; i < n; i++) {
-    const c = document.createElement("div"); c.className = "flycoin"; c.innerHTML = COIN_SVG;
-    document.body.appendChild(c);
-    const jx = sx + (Math.random() - .5) * 70, jy = sy + (Math.random() - .5) * 50 - 30;
-    const a = c.animate([
-      { transform: `translate(${sx}px, ${sy}px) scale(.4)`, opacity: 0 },
-      { transform: `translate(${jx}px, ${jy}px) scale(1.15)`, opacity: 1, offset: .32 },
-      { transform: `translate(${tx}px, ${ty}px) scale(.7)`, opacity: .9 }
-    ], { duration: 760 + i * 55, easing: "cubic-bezier(.5,0,.25,1)", fill: "forwards" });
-    a.onfinish = () => { c.remove(); if (i === 0) { setCoins(store.coins, true); } bumpPill(); };
-  }
-}
-function floatText(text, rect) {
-  const el = document.createElement("div"); el.className = "floattext"; el.textContent = text;
-  el.style.left = rect.left + rect.width / 2 - 20 + "px"; el.style.top = rect.top - 6 + "px";
-  document.body.appendChild(el);
-  const a = el.animate([{ transform: "translateY(0) scale(.6)", opacity: 0 }, { transform: "translateY(-18px) scale(1.15)", opacity: 1, offset: .3 }, { transform: "translateY(-46px) scale(1)", opacity: 0 }],
-    { duration: calm() ? 1 : 1100, easing: "ease-out", fill: "forwards" });
-  a.onfinish = () => el.remove();
-}
 function confetti() {
   if (calm()) return;
   const cv = document.createElement("canvas"), dpr = Math.min(2, devicePixelRatio || 1);
@@ -1372,40 +1235,6 @@ function showLevelUp(lvl) {
   });
 }
 
-/* ── daily check-in ── */
-function dailyState() {
-  const today = dkey(0), yest = dkey(-1);
-  if (!store.daily) { store.daily = { claimed: 2, last: yest }; save(); }
-  const d = store.daily;
-  let claimed = d.claimed;
-  if (d.last !== today && d.last !== yest) claimed = 0;      // streak broken
-  if (d.last !== today && claimed >= 7) claimed = 0;          // week finished, start over
-  const can = d.last !== today;
-  return { claimed, can, idx: can ? claimed : claimed - 1 };
-}
-function renderDaily() {
-  const st = dailyState();
-  $("#streak").textContent = t("streak", { n: st.idx + 1 });
-  $("#days").innerHTML = DAILY.map((amt, i) => {
-    const cls = i < st.idx || (i === st.idx && !st.can) ? "done" : i === st.idx ? "today" : "later";
-    return `<button type="button" class="day ${cls}" data-day="${i}" aria-label="${t("dayN", { n: i + 1 })}, +${amt}">
-      <span class="dn">${t("dayN", { n: i + 1 })}</span>${i === 6 ? CHEST_SVG : COIN_SVG}<span class="amt">+${amt}</span></button>`;
-  }).join("");
-}
-$("#days").addEventListener("click", e => {
-  const b = e.target.closest("[data-day]"); if (!b) return;
-  const i = +b.dataset.day, st = dailyState();
-  if (!st.can && i <= st.idx) return toast(t("dailyDone"));
-  if (i !== st.idx) return toast(t("dailyLater"));
-  const amt = DAILY[i];
-  store.daily = { claimed: st.claimed + 1, last: dkey(0) };
-  store.coins += amt; save();
-  b.classList.remove("today"); b.classList.add("claiming");
-  flyCoins(b.getBoundingClientRect(), amt);
-  if (i === 6) confetti();
-  toast(t("claimed", { n: amt }));
-  setTimeout(renderDaily, 650);
-});
 
 /* ── login / logout ── */
 let pickAvatar = 0;
@@ -1608,7 +1437,6 @@ function launch(g) {
   closeGame();
   const lvlBefore = levelOf(store.plays);
   store.plays++;
-  store.coins += 25;
   pendingReward = { lvl: levelOf(store.plays) > lvlBefore ? levelOf(store.plays) : 0 };
   store.recent = [g.id, ...store.recent.filter(id => id !== g.id)].slice(0, 8);
   save();
@@ -1631,9 +1459,7 @@ function closeLauncher() {
   if (pendingReward) {
     const r = pendingReward; pendingReward = null;
     setTimeout(() => {
-      const box = { left: innerWidth / 2 - 30, top: innerHeight / 2 - 30, width: 60, height: 60 };
-      flyCoins(box, 25); toast(t("rewardPlay"));
-      if (r.lvl) setTimeout(() => showLevelUp(r.lvl), 900);
+      if (r.lvl) showLevelUp(r.lvl);
     }, 450);
   }
 }
@@ -1755,7 +1581,7 @@ document.addEventListener("keydown", e => {
 
 /* ── boot ── */
 $$(".wm").forEach(el => { el.innerHTML = WORDMARK; });
-["#s-knob", "#l-knob", "#xp-knob", "#coin-knob"].forEach(s => { $(s).innerHTML = SPROUT; });
+["#s-knob", "#l-knob", "#xp-knob"].forEach(s => { $(s).innerHTML = SPROUT; });
 $("#s-knob .sprout").classList.add("live"); $("#l-knob .sprout").classList.add("live");
 applyLang();
 const startView = (location.hash || "").slice(1);

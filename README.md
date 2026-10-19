@@ -1,6 +1,6 @@
 # Pipomori
 
-Mobile game portal prototype with a forest theme: splash screen with a wooden loader, Home / Games / Profile, daily rewards, coins and levels, and Indonesian/English copy.
+Mobile game portal prototype with a forest theme: splash screen with a wooden loader, Home / Games / Profile, levels, and Indonesian/English copy.
 
 Everything lives in `index.html` plus the images in `assets/`. To run it locally:
 
