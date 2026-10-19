@@ -554,6 +554,39 @@ section.block { padding-top: var(--section); }
 .lg-panel input:focus { box-shadow: inset 0 0 0 2px var(--leaf); }
 .lg-err { margin: -4px 0 0; color: #b8432a; font-size: 12.5px; font-weight: 600; }
 .lg-guest { height: 40px; font-weight: 700; color: var(--leaf-deep); }
+.lg-panel[hidden], .p-level .vip[hidden] { display: none; }
+.lg-guest:disabled { color: var(--ink-soft); font-weight: 600; }
+.lg-tel { display: flex; align-items: center; height: 50px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1.5px var(--line); margin-top: -6px; }
+.lg-tel:focus-within { box-shadow: inset 0 0 0 2px var(--leaf); }
+.lg-tel span { padding: 0 4px 0 16px; font-weight: 800; color: var(--ink-soft); }
+.lg-panel .lg-tel input { flex: 1; min-width: 0; height: 100%; margin: 0; padding-left: 6px; background: none; box-shadow: none; letter-spacing: .04em; }
+.lg-panel input.lg-otp { justify-self: center; width: 200px; margin: 0; text-align: center; font-size: 28px; font-weight: 800; letter-spacing: .5em; padding: 0 0 0 .5em; height: 60px; font-variant-numeric: tabular-nums; }
+.lg-panel > p b { white-space: nowrap; color: var(--ink); }
+.lg-demo { margin: -4px 0 0; text-align: center; font-size: 12.5px; font-weight: 700; color: var(--wood-dark); }
+.lg-demo b { background: #fff3c4; padding: 2px 8px; border-radius: 8px; letter-spacing: .12em; }
+.lg-row { display: flex; justify-content: space-between; gap: 8px; }
+
+/* operator subscription card */
+.sub-card { background: #fff; border-radius: 22px; padding: 18px; box-shadow: 0 0 0 1px var(--line); display: grid; gap: 12px; }
+.sub-card.on { background: linear-gradient(180deg, #fff, #f2f9ea); box-shadow: 0 0 0 1.5px #bfe0a0; }
+.sub-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.sub-top b { font-size: 16px; font-weight: 800; }
+.sub-top small { display: block; color: var(--ink-soft); font-weight: 600; font-size: 12.5px; margin-top: 2px; }
+.sub-pill { flex: none; font-size: 11px; font-weight: 800; padding: 5px 10px; border-radius: 99px; background: var(--meadow); color: var(--ink-soft); box-shadow: inset 0 0 0 1px var(--line); }
+.sub-card.on .sub-pill { background: var(--leaf); color: #fff; box-shadow: none; }
+.sub-perks { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 13px; font-weight: 600; }
+.sub-perks li { display: flex; gap: 8px; align-items: center; }
+.sub-perks li::before { content: ""; flex: none; width: 18px; height: 18px; border-radius: 50%; background: var(--leaf-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233d7a22' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 11px no-repeat; }
+.sub-meta { margin: 0; font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+.sub-card .btn { width: 100%; }
+.btn.leaf { background: linear-gradient(180deg, #8fd05a, var(--leaf)); color: #fff; box-shadow: 0 3px 0 var(--leaf-deep); }
+.btn.ghost.warn { color: #b8432a; }
+.dlg .sub-sum { margin: 0 0 12px; padding: 12px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); text-align: left; font-size: 13px; line-height: 1.6; color: var(--ink); }
+.dlg .sub-sum b { font-weight: 800; }
+.nw { white-space: nowrap; }
+.dlg p.fine { font-size: 12px; margin-bottom: 16px; }
+.dlg-ico.leaf { background: var(--leaf-soft); color: var(--leaf-deep); }
+.p-level .vip { margin-left: 6px; background: var(--sun); color: var(--wood-dark); }
 .wm.big { justify-self: center; font-size: 30px; margin-bottom: 2px; }
 
 /* logout row */
@@ -852,7 +885,7 @@ section.block { padding-top: var(--section); }
         <button type="button" class="avatar-edit" id="avatar-edit" data-i18n="changeAvatar">Ganti karakter</button>
       </div>
       <h2 class="p-name" data-i18n="playerName">Penjelajah Pipo</h2>
-      <div class="p-level"><span id="p-level">Level 7</span></div>
+      <div class="p-level"><span id="p-level">Level 7</span><span class="vip" id="p-vip" hidden></span></div>
       <div class="xp">
         <div class="bar slim" aria-hidden="true"><div class="track"><div class="fill" id="xp-fill"></div><span id="xp-knob"></span></div></div>
         <small id="xp-label"></small>
@@ -869,6 +902,11 @@ section.block { padding-top: var(--section); }
       <section class="block">
         <div class="head"><h2 data-i18n="recent">Terakhir Dimainkan</h2></div>
         <div class="mini" id="recent-list"></div>
+      </section>
+
+      <section class="block">
+        <div class="head"><h2 data-i18n="subTitle">Langganan</h2></div>
+        <div class="sub-card" id="sub-card"></div>
       </section>
 
       <section class="block">
@@ -942,15 +980,38 @@ section.block { padding-top: var(--section); }
 </div>
 <!-- ═══════════ LOGIN ═══════════ -->
 <div id="login" class="cover login" role="dialog" aria-modal="true" aria-labelledby="lg-title" hidden>
-  <form class="lg-panel" id="lg-form" novalidate>
+  <!-- step 1: phone number -->
+  <form class="lg-panel" id="lg-phone-form" novalidate>
     <h2 id="lg-title" data-i18n="loginTitle">Masuk ke Pipomori</h2>
+    <p data-i18n="phoneSub">Masukkan nomor HP-mu. Kami kirim kode OTP lewat SMS.</p>
+    <label class="lg-label" for="lg-phone" data-i18n="phoneLabel">Nomor HP</label>
+    <div class="lg-tel"><span>+62</span><input id="lg-phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="15" placeholder="812 3456 7890"></div>
+    <p class="lg-err" id="lg-phone-err" hidden></p>
+    <button type="submit" class="cta shine" data-i18n="sendOtp">Kirim Kode</button>
+    <button type="button" class="lg-guest" id="lg-guest" data-i18n="guest">Main sebagai tamu</button>
+  </form>
+  <!-- step 2: OTP -->
+  <form class="lg-panel" id="lg-otp-form" novalidate hidden>
+    <h2 data-i18n="otpTitle">Masukkan Kode OTP</h2>
+    <p id="lg-otp-sub"></p>
+    <input id="lg-otp" class="lg-otp" inputmode="numeric" autocomplete="one-time-code" maxlength="4" aria-label="OTP" placeholder="••••">
+    <p class="lg-demo" id="lg-demo"></p>
+    <p class="lg-err" id="lg-otp-err" hidden></p>
+    <button type="submit" class="cta shine" data-i18n="verify">Verifikasi</button>
+    <div class="lg-row">
+      <button type="button" class="lg-guest" id="lg-change" data-i18n="changeNumber">Ganti nomor</button>
+      <button type="button" class="lg-guest" id="lg-resend"></button>
+    </div>
+  </form>
+  <!-- step 3: character + name -->
+  <form class="lg-panel" id="lg-form" novalidate hidden>
+    <h2 data-i18n="profileTitle">Siapa namamu?</h2>
     <p data-i18n="loginSub">Pilih karakter dan tulis nama penjelajahmu.</p>
     <div class="lg-avatars" id="lg-avatars" role="radiogroup" aria-label="Karakter"></div>
     <label class="lg-label" for="lg-name" data-i18n="nameLabel">Nama penjelajah</label>
     <input id="lg-name" maxlength="16" autocomplete="nickname" data-i18n-ph="namePh" placeholder="Contoh: Pandu">
     <p class="lg-err" id="lg-err" hidden></p>
     <button type="submit" class="cta shine" data-i18n="login">Masuk</button>
-    <button type="button" class="lg-guest" id="lg-guest" data-i18n="guest">Main sebagai tamu</button>
   </form>
 </div>
 <div id="dlg-root"></div>
@@ -967,7 +1028,19 @@ const T = {
     levelUp: "Naik Level!", levelUpSub: "Kamu sekarang Level {n}. Satu lencana baru terbuka.", nice: "Mantap!",
     logout: "Keluar", logoutQ: "Keluar dari akun?", logoutText: "Favorit dan riwayat mainmu tetap tersimpan di perangkat ini.", cancel: "Batal", loggedOut: "Kamu sudah keluar",
     loginTitle: "Masuk ke Pipomori", loginSub: "Pilih karakter dan tulis nama penjelajahmu.", nameLabel: "Nama penjelajah", namePh: "Contoh: Pandu",
-    login: "Masuk", guest: "Main sebagai tamu", guestName: "Tamu", hello: "Halo, {n}!", nameMissing: "Tulis namamu dulu, atau main sebagai tamu.",
+    login: "Masuk", guest: "Main sebagai tamu", guestName: "Tamu", hello: "Halo, {n}!", nameMissing: "Tulis namamu dulu.",
+    phoneSub: "Masukkan nomor HP-mu. Kami kirim kode OTP lewat SMS.", phoneLabel: "Nomor HP", sendOtp: "Kirim Kode", phoneBad: "Nomor HP belum benar. Contoh: 0812 3456 7890.",
+    otpTitle: "Masukkan Kode OTP", otpSub: "Kode 4 digit sudah dikirim lewat SMS ke {p}.", otpDemo: "Mode demo, kodenya:", verify: "Verifikasi",
+    otpBad: "Kodenya belum cocok. Cek SMS-mu lagi ya.", changeNumber: "Ganti nomor", resend: "Kirim ulang kode", resendIn: "Kirim ulang {s} dtk", otpSent: "Kode baru sudah dikirim",
+    profileTitle: "Siapa namamu?",
+    subTitle: "Langganan", subPlan: "Pipomori Harian", subPrice: "Rp2.200/hari", subOff: "Belum aktif", subOn: "Aktif",
+    perk1: "Main tanpa iklan", perk2: "Lencana Pelanggan eksklusif", perk3: "Coba game baru lebih dulu",
+    subVia: "Ditagih lewat pulsa {o} · {p}", subSince: "Aktif sejak {d} · diperpanjang otomatis {n}",
+    subscribe: "Berlangganan", unsubscribe: "Berhenti Langganan", subGuest: "Masuk dengan nomor HP untuk berlangganan.", loginPhone: "Masuk dengan Nomor HP",
+    subQ: "Konfirmasi Langganan", subQText: "Pulsa {o} di nomor {p} akan dipotong {price} (termasuk PPN) dan diperpanjang otomatis setiap hari.",
+    subSms: "Bisa juga lewat SMS: ketik {k} kirim ke {sc}.", subYes: "Ya, Berlangganan", subDone: "Langganan aktif! SMS konfirmasi dikirim ke {p}",
+    unsubQ: "Berhenti langganan?", unsubText: "Pulsamu tidak akan dipotong lagi mulai besok. Semua game tetap bisa kamu mainkan.", unsubYes: "Berhenti", unsubDone: "Langganan sudah dihentikan",
+    subscriber: "Pelanggan", opOther: "operator",
     play: "Main", startsIn: "Mulai dalam", endsIn: "Berakhir dalam", ended: "Event ini sudah selesai.", days: "Hari", hours: "Jam", mins: "Menit", joinEvent: "Ikut Event", joinedEvent: "Sudah ikut", eventJoined: "Kamu ikut Festival Kiko", eventLeft: "Kamu batal ikut event", online: "online",
     recommended: "Rekomendasi", seeAll: "Lihat semua", games: "game", playing: "sedang main", isNew: "Baru", hot: "Populer",
     playNow: "Main Sekarang", navHome: "Beranda", navGames: "Game", navProfile: "Profil",
@@ -997,7 +1070,19 @@ const T = {
     levelUp: "Level Up!", levelUpSub: "You're now Level {n}. A new badge is unlocked.", nice: "Awesome!",
     logout: "Log out", logoutQ: "Log out?", logoutText: "Your favorites and play history stay saved on this device.", cancel: "Cancel", loggedOut: "You've logged out",
     loginTitle: "Sign in to Pipomori", loginSub: "Pick a character and enter your explorer name.", nameLabel: "Explorer name", namePh: "e.g. Pandu",
-    login: "Sign in", guest: "Play as guest", guestName: "Guest", hello: "Hi, {n}!", nameMissing: "Enter your name first, or play as guest.",
+    login: "Sign in", guest: "Play as guest", guestName: "Guest", hello: "Hi, {n}!", nameMissing: "Enter your name first.",
+    phoneSub: "Enter your phone number. We'll text you a one-time code.", phoneLabel: "Phone number", sendOtp: "Send Code", phoneBad: "That number doesn't look right. Example: 0812 3456 7890.",
+    otpTitle: "Enter the Code", otpSub: "We texted a 4-digit code to {p}.", otpDemo: "Demo mode, your code is:", verify: "Verify",
+    otpBad: "That code doesn't match. Check your SMS again.", changeNumber: "Change number", resend: "Resend code", resendIn: "Resend in {s}s", otpSent: "A new code is on its way",
+    profileTitle: "What's your name?",
+    subTitle: "Subscription", subPlan: "Pipomori Daily", subPrice: "Rp2,200/day", subOff: "Not active", subOn: "Active",
+    perk1: "Play without ads", perk2: "Exclusive Subscriber badge", perk3: "Try new games first",
+    subVia: "Billed to your {o} balance · {p}", subSince: "Active since {d} · renews automatically {n}",
+    subscribe: "Subscribe", unsubscribe: "Unsubscribe", subGuest: "Sign in with your phone number to subscribe.", loginPhone: "Sign in with Phone",
+    subQ: "Confirm Subscription", subQText: "{price} (incl. VAT) will be charged to the {o} balance on {p} and renew automatically every day.",
+    subSms: "You can also text {k} to {sc}.", subYes: "Yes, Subscribe", subDone: "You're subscribed! A confirmation SMS was sent to {p}",
+    unsubQ: "Unsubscribe?", unsubText: "You won't be charged from tomorrow on. You can still play every game.", unsubYes: "Unsubscribe", unsubDone: "Your subscription has been stopped",
+    subscriber: "Subscriber", opOther: "carrier",
     play: "Play", startsIn: "Starts in", endsIn: "Ends in", ended: "This event has ended.", days: "Days", hours: "Hrs", mins: "Min", joinEvent: "Join Event", joinedEvent: "Joined", eventJoined: "You joined Kiko's Festival", eventLeft: "You left the event", online: "online",
     recommended: "Recommended", seeAll: "See all", games: "games", playing: "playing", isNew: "New", hot: "Popular",
     playNow: "Play Now", navHome: "Home", navGames: "Games", navProfile: "Profile",
@@ -1173,6 +1258,8 @@ function renderProfile() {
   const totalXp = 640 + store.plays * 40;
   const lvl = levelOf(store.plays), xp = totalXp % 1000;
   $("#p-level").textContent = t("level", { n: lvl });
+  $("#p-vip").hidden = !isSubbed(); $("#p-vip").textContent = t("subscriber");
+  renderSub();
   $("#xp-label").textContent = t("xp", { a: nf().format(xp) });
   const pct = Math.max(4, xp / 10);
   requestAnimationFrame(() => { $("#xp-fill").style.width = pct + "%"; $("#xp-knob .sprout").style.left = pct + "%"; });
@@ -1237,18 +1324,78 @@ function showLevelUp(lvl) {
 
 
 /* ── login / logout ── */
-let pickAvatar = 0;
 function renderLoginAvatars() {
   $("#lg-avatars").innerHTML = AVATARS.map((a, i) => `<button type="button" role="radio" aria-checked="${i === pickAvatar}" aria-label="${a.name}" data-pick="${i}"
     style="background-image:url('${a.img}');background-position:${a.pos}"></button>`).join("");
 }
+// phone numbers are kept as the national part without the leading 0, e.g. "81234567890"
+const normPhone = v => { const d = v.replace(/\D/g, ""); return d.startsWith("62") ? d.slice(2) : d.startsWith("0") ? d.slice(1) : d; };
+const validPhone = p => /^8[1-9]\d{7,10}$/.test(p);
+const showPhone = p => `+62 ${p.slice(0, 3)}-${p.slice(3, 7)}-${p.slice(7)}`;
+const maskPhone = p => `+62 ${p.slice(0, 3)}-••••-${p.slice(-4)}`;
+const OPERATORS = [
+  ["Telkomsel", ["811", "812", "813", "821", "822", "823", "851", "852", "853"]],
+  ["Indosat", ["814", "815", "816", "855", "856", "857", "858"]],
+  ["XL", ["817", "818", "819", "859", "877", "878"]],
+  ["AXIS", ["831", "832", "833", "838"]],
+  ["Tri", ["895", "896", "897", "898", "899"]],
+  ["Smartfren", ["881", "882", "883", "884", "885", "886", "887", "888", "889"]]
+];
+const operatorOf = p => (OPERATORS.find(([, pre]) => pre.includes(p.slice(0, 3))) || [t("opOther")])[0];
+const SUB_SC = "99876", SUB_REG = "REG PIPO", SUB_UNREG = "UNREG PIPO";
+
+let pickAvatar = 0, otp = { phone: "", code: "", until: 0 }, resendTimer = 0;
+function loginStep(step) {
+  ["phone", "otp", "form"].forEach(s => { $(s === "form" ? "#lg-form" : `#lg-${s}-form`).hidden = s !== step; });
+  $$("#login .lg-err").forEach(e => { e.hidden = true; });
+  const focus = { phone: "#lg-phone", otp: "#lg-otp", form: "#lg-name" }[step];
+  setTimeout(() => $(focus).focus(), 60);
+}
 function showLogin() {
   pickAvatar = store.avatar || 0;
   renderLoginAvatars();
+  $("#lg-phone").value = store.phone || "";
   $("#lg-name").value = store.name && store.name !== t("guestName") ? store.name : "";
-  $("#lg-err").hidden = true;
+  loginStep("phone");
   const L = $("#login"); L.classList.remove("out"); L.hidden = false;
 }
+function lgError(id, msg) { const er = $(id); er.textContent = msg; er.hidden = false; }
+function sendOtp(phone) {
+  otp = { phone, code: String(Math.floor(1000 + Math.random() * 9000)), until: Date.now() + 30000 };
+  $("#lg-otp-sub").innerHTML = t("otpSub", { p: `<b>${showPhone(phone)}</b>` });
+  $("#lg-demo").innerHTML = `${t("otpDemo")} <b>${otp.code}</b>`;
+  $("#lg-otp").value = "";
+  tickResend();
+}
+function tickResend() {
+  clearTimeout(resendTimer);
+  const s = Math.ceil((otp.until - Date.now()) / 1000), b = $("#lg-resend");
+  b.disabled = s > 0;
+  b.textContent = s > 0 ? t("resendIn", { s }) : t("resend");
+  if (s > 0) resendTimer = setTimeout(tickResend, 1000);
+}
+$("#lg-phone-form").addEventListener("submit", e => {
+  e.preventDefault();
+  const p = normPhone($("#lg-phone").value);
+  if (!validPhone(p)) { lgError("#lg-phone-err", t("phoneBad")); $("#lg-phone").focus(); return; }
+  sendOtp(p); loginStep("otp");
+});
+$("#lg-otp").addEventListener("input", e => {
+  e.target.value = e.target.value.replace(/\D/g, "").slice(0, 4);
+  $("#lg-otp-err").hidden = true;
+  if (e.target.value.length === 4) $("#lg-otp-form").requestSubmit();
+});
+$("#lg-otp-form").addEventListener("submit", e => {
+  e.preventDefault();
+  if ($("#lg-otp").value !== otp.code) { lgError("#lg-otp-err", t("otpBad")); $("#lg-otp").select(); return; }
+  clearTimeout(resendTimer);
+  // a returning number keeps its explorer name; a new one gets a fresh profile step
+  if (store.phone !== otp.phone) { store.name = ""; $("#lg-name").value = ""; }
+  store.phone = otp.phone; save();
+  loginStep("form");
+});
+$("#lg-change").addEventListener("click", () => { clearTimeout(resendTimer); loginStep("phone"); });
+$("#lg-resend").addEventListener("click", () => { sendOtp(otp.phone); toast(t("otpSent")); $("#lg-otp").focus(); });
 function finishLogin(name) {
   store.name = name; store.avatar = pickAvatar; store.loggedIn = true; save();
   const L = $("#login"); L.classList.add("out");
@@ -1263,10 +1410,61 @@ $("#lg-avatars").addEventListener("click", e => {
 $("#lg-form").addEventListener("submit", e => {
   e.preventDefault();
   const name = $("#lg-name").value.trim();
-  if (!name) { const er = $("#lg-err"); er.textContent = t("nameMissing"); er.hidden = false; $("#lg-name").focus(); return; }
+  if (!name) { lgError("#lg-err", t("nameMissing")); $("#lg-name").focus(); return; }
   finishLogin(name);
 });
-$("#lg-guest").addEventListener("click", () => finishLogin(t("guestName")));
+$("#lg-guest").addEventListener("click", () => { store.phone = ""; finishLogin(t("guestName")); });
+
+/* ── operator subscription ── */
+const isSubbed = () => !!(store.phone && store.sub && store.sub.phone === store.phone);
+const fmtDay = (d, opts = { day: "numeric", month: "short", year: "numeric" }) => new Date(d).toLocaleDateString(store.lang === "id" ? "id-ID" : "en-US", opts);
+function renderSub() {
+  const card = $("#sub-card"), on = isSubbed();
+  card.classList.toggle("on", on);
+  const head = `<div class="sub-top"><span><b>${t("subPlan")}</b><small>${t("subPrice")}</small></span><span class="sub-pill">${t(on ? "subOn" : "subOff")}</span></div>
+    <ul class="sub-perks"><li>${t("perk1")}</li><li>${t("perk2")}</li><li>${t("perk3")}</li></ul>`;
+  if (!store.phone) {
+    card.innerHTML = `${head}<p class="sub-meta">${t("subGuest")}</p><button type="button" class="btn leaf shine" id="sub-login">${t("loginPhone")}</button>`;
+  } else if (on) {
+    const next = new Date(); next.setDate(next.getDate() + 1);
+    card.innerHTML = `${head}<p class="sub-meta">${t("subVia", { o: operatorOf(store.phone), p: maskPhone(store.phone) })}<br>${t("subSince", { d: fmtDay(store.sub.since), n: fmtDay(next, { day: "numeric", month: "short" }) })}</p>
+      <button type="button" class="btn ghost warn" id="sub-off">${t("unsubscribe")}</button>`;
+  } else {
+    card.innerHTML = `${head}<p class="sub-meta">${t("subVia", { o: operatorOf(store.phone), p: maskPhone(store.phone) })}</p>
+      <button type="button" class="btn leaf shine" id="sub-on">${t("subscribe")}</button>`;
+  }
+}
+$("#sub-card").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.id === "sub-login") { store.loggedIn = false; save(); showLogin(); }
+  if (b.id === "sub-on") confirmSub();
+  if (b.id === "sub-off") confirmUnsub();
+});
+function confirmSub() {
+  const o = operatorOf(store.phone), p = maskPhone(store.phone), pn = `<span class="nw">${p}</span>`;
+  dialog(`<div class="dlg-ico leaf"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg></div>
+    <h3>${t("subQ")}</h3>
+    <div class="sub-sum"><b>${t("subPlan")}</b> · ${t("subPrice")}<br>${t("subQText", { o, p: pn, price: t("subPrice") })}</div>
+    <p class="fine">${t("subSms", { k: `<b>${SUB_REG}</b>`, sc: `<b>${SUB_SC}</b>` })}</p>
+    <div class="dlg-actions"><button type="button" class="btn ghost" id="dlg-no">${t("cancel")}</button><button type="button" class="btn leaf" id="dlg-yes">${t("subYes")}</button></div>`, close => {
+    $("#dlg-yes").focus();
+    $("#dlg-no").addEventListener("click", close);
+    $("#dlg-yes").addEventListener("click", () => {
+      close(); store.sub = { phone: store.phone, since: Date.now() }; save();
+      renderProfile(); confetti(); toast(t("subDone", { p }));
+    });
+  });
+}
+function confirmUnsub() {
+  dialog(`<div class="dlg-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="m9.5 9.5 5 5M14.5 9.5l-5 5"/></svg></div>
+    <h3>${t("unsubQ")}</h3><p>${t("unsubText")}</p>
+    <p class="fine">${t("subSms", { k: `<b>${SUB_UNREG}</b>`, sc: `<b>${SUB_SC}</b>` })}</p>
+    <div class="dlg-actions"><button type="button" class="btn ghost" id="dlg-no">${t("cancel")}</button><button type="button" class="btn danger" id="dlg-yes">${t("unsubYes")}</button></div>`, close => {
+    $("#dlg-no").focus();
+    $("#dlg-no").addEventListener("click", close);
+    $("#dlg-yes").addEventListener("click", () => { close(); store.sub = null; save(); renderProfile(); toast(t("unsubDone")); });
+  });
+}
 $("#logout-btn").addEventListener("click", () => {
   dialog(`<div class="dlg-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="M10 17l-5-5 5-5M5 12h11"/></svg></div>
     <h3>${t("logoutQ")}</h3><p>${t("logoutText")}</p>
@@ -1600,7 +1798,7 @@ $$(".view").forEach(v => v.classList.remove("enter"));
     setTimeout(() => {
       const app = $("#app");
       app.classList.add("boot");
-      if (store.loggedIn === false) showLogin(); else playEnter($("#view-" + view));
+      if (store.loggedIn !== true) showLogin(); else playEnter($("#view-" + view));
       sp.classList.add("out");
       setTimeout(() => { sp.remove(); app.classList.remove("boot"); }, 1300);
     }, 250);
