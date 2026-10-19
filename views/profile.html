@@ -1,0 +1,73 @@
+<!-- PROFILE -->
+<div class="view" id="view-profile" hidden>
+  <header class="hero small" style="background-image:url('assets/momo-hop.jpg')">
+    <div class="topbar pad">
+      <span class="wordmark wm" aria-label="Pipomori"></span>
+      <div class="tr">
+        <div class="lang" role="group" aria-label="Bahasa / Language">
+          <button type="button" data-lang="id" aria-pressed="true">ID</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="sheet pad">
+    <div class="avatar-wrap">
+      <div class="avatar" id="avatar" role="img"></div>
+      <button type="button" class="avatar-edit" id="avatar-edit" data-i18n="changeAvatar">Ganti karakter</button>
+    </div>
+    <h2 class="p-name" data-i18n="playerName">Penjelajah Pipo</h2>
+    <div class="p-level"><span id="p-level">Level 7</span><span class="vip" id="p-vip" hidden></span></div>
+    <div class="xp">
+      <div class="bar slim" aria-hidden="true"><div class="track"><div class="fill" id="xp-fill"></div><span id="xp-knob"></span></div></div>
+      <small id="xp-label"></small>
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="st-played">0</b><small data-i18n="statPlayed">Game dimainkan</small></div>
+      <div class="stat"><b id="st-badges">0</b><small data-i18n="statBadges">Lencana</small></div>
+    </div>
+
+    <section class="block">
+      <div class="head"><h2 data-i18n="favs">Game Favorit</h2></div>
+      <div class="mini" id="fav-list"></div>
+    </section>
+    <section class="block">
+      <div class="head"><h2 data-i18n="recent">Terakhir Dimainkan</h2></div>
+      <div class="mini" id="recent-list"></div>
+    </section>
+
+    <section class="block">
+      <div class="head"><h2 data-i18n="subTitle">Langganan</h2></div>
+      <div class="sub-card" id="sub-card"></div>
+    </section>
+
+    <section class="block">
+      <div class="head"><h2 data-i18n="settings">Pengaturan</h2></div>
+      <div class="settings">
+        <div class="set">
+          <span class="lbl"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.5 5.7 3.5 9s-1 6.3-3.5 9c-2.5-2.7-3.5-5.7-3.5-9s1-6.3 3.5-9Z"/></svg></span><span data-i18n="setLang">Bahasa</span></span>
+          <div class="seg" role="group" aria-label="Bahasa / Language">
+            <button type="button" data-lang="id" aria-pressed="true">Indonesia</button>
+            <button type="button" data-lang="en" aria-pressed="false">English</button>
+          </div>
+        </div>
+        <div class="set">
+          <span class="lbl"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></span><span data-i18n="setSound">Suara &amp; musik</span></span>
+          <button type="button" class="switch" role="switch" id="sw-sound" aria-checked="true" aria-label="Suara"></button>
+        </div>
+        <div class="set">
+          <span class="lbl"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><span data-i18n="setNotif">Notifikasi event</span></span>
+          <button type="button" class="switch" role="switch" id="sw-notif" aria-checked="true" aria-label="Notifikasi"></button>
+        </div>
+        <div class="set">
+          <span class="lbl"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></span><span data-i18n="setAbout">Tentang Pipomori</span></span>
+          <small data-i18n="aboutText">Versi demo 1.0</small>
+        </div>
+        <button type="button" class="set set-btn" id="logout-btn">
+          <span class="lbl"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="M10 17l-5-5 5-5M5 12h11"/></svg></span><span data-i18n="logout">Keluar</span></span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        </button>
+      </div>
+    </section>
+  </main>
+</div>

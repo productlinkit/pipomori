@@ -1,0 +1,36 @@
+<!-- ═══════════ LOGIN ═══════════ -->
+<div id="login" class="cover login" role="dialog" aria-modal="true" aria-labelledby="lg-title" hidden>
+  <!-- step 1: phone number -->
+  <form class="lg-panel" id="lg-phone-form" novalidate>
+    <h2 id="lg-title" data-i18n="loginTitle">Masuk ke Pipomori</h2>
+    <p data-i18n="phoneSub">Masukkan nomor HP-mu. Kami kirim kode OTP lewat SMS.</p>
+    <label class="lg-label" for="lg-phone" data-i18n="phoneLabel">Nomor HP</label>
+    <div class="lg-tel"><span>+62</span><input id="lg-phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="15" placeholder="812 3456 7890"></div>
+    <p class="lg-err" id="lg-phone-err" hidden></p>
+    <button type="submit" class="cta shine" data-i18n="sendOtp">Kirim Kode</button>
+    <button type="button" class="lg-guest" id="lg-guest" data-i18n="guest">Main sebagai tamu</button>
+  </form>
+  <!-- step 2: OTP -->
+  <form class="lg-panel" id="lg-otp-form" novalidate hidden>
+    <h2 data-i18n="otpTitle">Masukkan Kode OTP</h2>
+    <p id="lg-otp-sub"></p>
+    <input id="lg-otp" class="lg-otp" inputmode="numeric" autocomplete="one-time-code" maxlength="4" aria-label="OTP" placeholder="••••">
+    <p class="lg-demo" id="lg-demo"></p>
+    <p class="lg-err" id="lg-otp-err" hidden></p>
+    <button type="submit" class="cta shine" data-i18n="verify">Verifikasi</button>
+    <div class="lg-row">
+      <button type="button" class="lg-guest" id="lg-change" data-i18n="changeNumber">Ganti nomor</button>
+      <button type="button" class="lg-guest" id="lg-resend"></button>
+    </div>
+  </form>
+  <!-- step 3: character + name -->
+  <form class="lg-panel" id="lg-form" novalidate hidden>
+    <h2 data-i18n="profileTitle">Siapa namamu?</h2>
+    <p data-i18n="loginSub">Pilih karakter dan tulis nama penjelajahmu.</p>
+    <div class="lg-avatars" id="lg-avatars" role="radiogroup" aria-label="Karakter"></div>
+    <label class="lg-label" for="lg-name" data-i18n="nameLabel">Nama penjelajah</label>
+    <input id="lg-name" maxlength="16" autocomplete="nickname" data-i18n-ph="namePh" placeholder="Contoh: Pandu">
+    <p class="lg-err" id="lg-err" hidden></p>
+    <button type="submit" class="cta shine" data-i18n="login">Masuk</button>
+  </form>
+</div>

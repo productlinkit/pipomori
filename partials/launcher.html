@@ -1,0 +1,15 @@
+<!-- ═══════════ GAME LAUNCHER ═══════════ -->
+<div id="launcher" class="cover" role="dialog" aria-modal="true" aria-labelledby="l-title" hidden>
+  <button type="button" class="l-close" id="l-close" aria-label="Kembali">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <h2 class="l-title" id="l-title"></h2>
+  <div class="loader" id="l-loader">
+    <div class="bar" aria-hidden="true"><div class="track"><div class="fill live" id="l-fill"></div><span id="l-knob"></span></div></div>
+    <div class="load-label"><span data-i18n="launchLoading">Memuat game</span> <span id="l-pct">0%</span></div>
+  </div>
+  <div class="l-done" id="l-done" hidden>
+    <p data-i18n="launchDone">Yeay, selamat! Kamu berhasil menyelesaikan permainannya. Hebat banget, terus main ya!</p>
+    <button type="button" class="cta" id="l-back" data-i18n="back">Kembali</button>
+  </div>
+</div>
